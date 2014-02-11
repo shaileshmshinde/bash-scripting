@@ -12,9 +12,7 @@ elif    [ $N -eq 0 ]; then
 
 else
 echo ""
-echo ""
-echo ""
-echo ""
+
         echo "It's not a number Type a number,"
 
 fi
