@@ -9,10 +9,7 @@ elif    [ $N -lt 0 ]; then
 
 elif    [ $N -eq 0 ]; then
         echo "It's Zero"
-
 else
-echo ""
-
+        echo ""
         echo "It's not a number Type a number,"
-
 fi
