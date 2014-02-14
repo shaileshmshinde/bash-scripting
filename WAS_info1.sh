@@ -9,20 +9,19 @@ httpd -V  2>&1 |head -n 1|awk -F" " '{print $3}'
 echo ""
 php -v  2>&1 |awk  'NR ==1{print $1,$2};/Zend/{print $1,$2,$3}'
 echo ""
-read -p "Provide Application Server's path (Press enter for /opt/IBM/WebSphere/AppServer): " waspath
+read  -p "Provide Application Server's path (Press enter for /opt/IBM/WebSphere/AppServer): " waspath
 echo ""
-waspath=$1
-if      [ -z $waspath  ]
-then    waspath=/opt/IBM/WebSphere/AppServer/
+
+waspath=${waspath:-/opt/IBM/WebSphere/AppServer}
+
+
+if [[  -f $waspath/bin/versionInfo.sh ]]
+then
         bash ${waspath}/bin/versionInfo.sh|sed -n '/Installed Product/ {n;n;N;p}'
         echo "WebSphere" `${waspath}/java/bin/java -version 2>&1|awk 'NR == 1'`
         ${waspath}/java/bin/java -cp /opt/IBM/Informix_JDBC_Driver/lib/ifxjdbc.jar com.informix.jdbc.Version
-elif [ ! -z $waspath  ]
-then    waspath=$1
-        bash ${waspath}/bin/versionInfo.sh|sed -n '/Installed Product/ {n;n;N;p}'
-        echo "WebSphere" `${waspath}/java/bin/java -version 2>&1|awk 'NR == 1'`
-        ${waspath}/java/bin/java -cp /opt/IBM/Informix_JDBC_Driver/lib/ifxjdbc.jar com.informix.jdbc.Version
-else echo "Application Server path not found!!!"
+else
+        { echo  "Path not found!"; exit 1; }
 fi
 
 echo ""
