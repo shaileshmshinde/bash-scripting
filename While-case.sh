@@ -2,6 +2,8 @@
 while true
 do
         clear
+tput bold
+tput setaf 3
         cat <<-XXX
             Server name is $(hostname)
             *******************************
@@ -12,6 +14,7 @@ do
             [3] Check Network activty current time
             [4] Exit
         XXX
+tput sgr 0
 read -p "Enter your choice : " choice
 case $choice in
         1) echo "Today date is $(date)"
@@ -25,7 +28,10 @@ case $choice in
         ;;
         4) exit 0 && echo BYE
         ;;
+
         *) echo "Invalid Option; select option again."
+         read -p "Please press [Enter] to continue.." readenter
+        ;;
 esac
 
 done
