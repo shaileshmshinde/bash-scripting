@@ -100,7 +100,7 @@ while test -n "$1"; do
             shift
             ;;
         --pid_path|-p)
-		 path_pid=$2
+            path_pid=$2
             shift
             ;;
         --pid_name|-n)
@@ -284,7 +284,7 @@ if [ "${wclvls_wkrs}" = 1 ]
         fi
     else
         echo "OK - ${output} | ${perfdata}"
-       exit $ST_OK
+        exit $ST_OK
     fi
 
 fi
